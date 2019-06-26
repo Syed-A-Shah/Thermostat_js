@@ -45,5 +45,9 @@ describe('thermostat ', function(){
   expect(t.powerSavingMode).toBe(true);
   });
 
-
+  it('reset function changes temperature back to 20', function(){
+    t.tempd()
+    t.reset()
+    expect(t.temperature).toBe(20)
+  });
 });

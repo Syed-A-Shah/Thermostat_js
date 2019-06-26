@@ -8,8 +8,9 @@ function Thermostat() {
 }
 
 Thermostat.prototype.tempu = function(){
-  this.temperature ++;
-}
+  if(this.temperature < this.maxTemperature){
+      this.temperature ++;
+  }};
 
 Thermostat.prototype.tempd = function(){
   if(this.temperature > this.mintemp){
@@ -23,5 +24,7 @@ Thermostat.prototype.powerSavingSwitch = function(){
   } else {
     this.powerSavingmode = true;
     this.maxTemperature = 25;
-  }
+  }};
+Thermostat.prototype.reset = function(){
+  this.temperature = 20
 };
