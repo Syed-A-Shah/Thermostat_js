@@ -3,8 +3,7 @@ describe('thermostat ', function(){
 
   beforeEach(function(){
     t = new Thermostat()
-  }
-)
+  });
 
   it('starts the temperature with a default of 20', function(){
     expect(t.temperature).toBe(20)
@@ -23,11 +22,28 @@ describe('thermostat ', function(){
     expect(t.temperature).toBe(19)
     console.log(t.temperature)
   });
-  it('has a minimum temperature of 10', function(){
+
+  it('has a default minimum temperature of 10', function(){
     for(var i = 0; i < 11; i++){
       t.tempd()
     }
     expect(t.temperature).toBe(10)
   });
+
+  it('has a max temp of 25 when power saving mode is on', function(){
+    expect(t.powerSavingMode).toBe(true);
+    expect(t.maxTemperature).toBe(25);
+  });
+
+  it('has a max temp of 32 when power saving mode is off', function(){
+    t.powerSavingSwitch()
+    expect(t.powerSavingMode).toBe(false);
+    expect(t.maxTemperature).toBe(32);
+  });
+
+  it('has powerSavingMode on by default', function(){
+  expect(t.powerSavingMode).toBe(true);
+  });
+
 
 });
