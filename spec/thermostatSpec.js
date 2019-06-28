@@ -1,4 +1,4 @@
-describe('thermostat ', function(){
+describe('Thermostat ', function(){
   var t
 
   beforeEach(function(){
@@ -11,16 +11,12 @@ describe('thermostat ', function(){
 
   it('can increase the temperature by one', function(){
     t.tempu()
-    console.log(t.tempu)
     expect(t.temperature).toBe(21)
-    console.log(t.temperature)
   });
 
   it('can decrease the temperature by one', function(){
     t.tempd()
-    console.log(t.tempd)
     expect(t.temperature).toBe(19)
-    console.log(t.temperature)
   });
 
   it('has a default minimum temperature of 10', function(){
@@ -50,4 +46,23 @@ describe('thermostat ', function(){
     t.reset()
     expect(t.temperature).toBe(20)
   });
+
+  it('returns low-usage when temp is below 18', function(){
+    for(i = 0; i < 4; i++){
+      t.tempd()
+    }
+    expect(t.energyUsage()).toBe("Low Usage")
+  });
+
+  it('returns medium-usage when temp is above 18 and below 25', function(){
+    expect(t.energyUsage()).toBe("Medium Usage")
+  });
+
+  it('returns high-usage when temp is above 25', function(){
+    for(i = 0; i < 6; i++){
+      t.tempu()
+    }
+    expect(t.energyUsage()).toBe("High Usage")
+  });
+
 });
